@@ -1,0 +1,98 @@
+#include<stdio.h>
+
+#define MAXSIZE 50
+
+int arr[MAXSIZE];
+int size = 0;
+
+void display()
+{
+    int i;
+    if(size==0){
+        printf("list is empty:");
+    }
+    for (i=0;i<size;i++)
+        printf(arr[i]);
+
+}
+void InsertAtPosition(int pos,int val)
+{
+    for(int i=size-1;i>=pos;i--)
+    {
+        arr[i+1]=arr[i];
+    }
+    arr[pos] = val;
+    size++;
+
+}
+void deleteatpos( int pos)
+{
+   int i;
+   int del = arr[pos];
+   for (i=pos;i<size;i++)
+   {
+       arr[i] = arr[i+1];
+   }
+   size--;
+
+}
+
+int main()
+{
+    int choice,val;
+    while(1){
+    printf("insert at end:\n");
+    printf("insert at any position:\n");
+    printf("delete at any position:\n");
+    printf("display:");
+    printf("exit:\n");
+    printf("enter the choice:");
+    scanf("%d",&choice)
+    switch(choice){
+        case 1: printf("enter the data:");
+                scanf("%d",&val);
+                arr[size] = val;
+                size++;
+                break;
+        case 2: if(size == MAXSIZE)
+                 {
+                   printf("array is full");
+                   break;
+
+                 }
+
+
+                printf("enter the pos");
+                scanf("%d",&pos);
+                if(pos<0 || pos>MAXSIZE)
+                {
+                    printf("INVALID POSITION:");
+                    break;
+
+                }
+                printf("enter the data:");
+                scanf("%d",&val);
+                InsertAtPosition(pos,val);
+                break;
+        case 3: if(size == 0)
+                {
+                    printf("array is empty:");
+                    break;
+                }
+                printf("enter the pos to delete:");
+                scanf("%d",&pos);
+                deleteatpos(pos);
+                break;
+        case 4:Display();
+               break;
+
+        case 5:exit(0);
+               break;
+        default: printf("wrong choice:");
+                 break;
+
+    }
+
+
+    }
+}
